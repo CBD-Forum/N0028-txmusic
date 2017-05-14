@@ -1,0 +1,565 @@
+@charset "utf-8";
+html, body, ul, li, ol, dl, dd, dt, p, h1, h2, h3, h4, h5, h6, form, fieldset, legend,img,input{margin:0;padding:0;}
+h1, h2, h3, h4, h5, h6{font-weight:normal;}
+fieldset,img{border:none;}
+address,caption,cite,code,dfn,th,var{font-style:normal;font-weight:normal;}
+ul,ol,span,i{list-style:none;}
+select,input{vertical-align:middle;}
+select,input,textarea{font-size:12px;margin:0;outline:none;resize:none;font-family:Verdana;}
+table{ border-collapse: collapse; font-family: Verdana, Geneva, sans-serif; }
+em{font-style: normal;}
+.clearfix:after{content:".";display:block;height:0;overflow:hidden;clear:both;}
+.clearfix{zoom:1; clear:both}
+.clearit{clear:both;height:0;font-size:0;overflow:hidden;}
+a{text-decoration:none;color: #000;}
+a:hover, a:active, a:focus{text-decoration:none;}
+body{font-family:Arial,"微软雅黑";font-size:14px;}
+b{font-weight:normal;}
+.cont{width:80%;margin:0 auto;min-width:1024px;max-width:1920px;}
+.overflow_hidden{overflow:hidden;}
+*{
+  padding: 0;
+  margin: 0;
+}
+/*=================页面开始==========================*/
+/*=======================主页面开始==========================*/
+
+.header{
+  width: 100%;
+  height: 100px;
+  background: red;
+  margin-bottom: 20px;
+}
+.header h3{
+  line-height: 100px;
+  font-size: 30px;
+  color: #fff;
+  padding-left: 10px;
+}
+.header p{
+  line-height: 100px;
+  font-size: 16px;
+  color: #fff;
+  padding-right: 10px;
+}
+.left{
+  float: left;
+}
+.right{
+  float:right;
+}
+
+.aside ul{
+  border: 1px solid #ccc;
+  text-align: center;
+}
+.aside ul li{
+  height: 50px;
+  line-height: 50px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.aside .active{
+  background: red;
+  color: #fff;
+}
+.aside .bor_li{
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+/* index page start */
+.btnModify{
+	background:none;
+	padding:0;
+	color:#23527c;
+}
+.index_pay{
+	font-size: 16px;
+	color: #333;
+	font-weight: bold;
+}
+.index_pay_style{
+	text-align: center;
+	color: #990000;
+	font-size: 20px;
+	font-weight: bold;
+}
+.index_line32{
+	line-height: 32px;
+}
+.index_line32 input{
+  border: 1px solid #ddd;
+	border-radius: 4px;
+	padding-left: 10px;
+	height: 32px;
+	outline: none;
+}
+.index_pad{
+	padding: 22px 40px 15px 64px;
+}
+.index_txt_center{
+	text-align: center;
+	}
+.index_h4{
+  font-size:16px;
+  color: #000;
+  padding-top:20px;
+  padding-bottom:20px;
+}
+.index_pad_top15{
+  padding-top: 15px;
+}
+.index_pad_bot15{
+  padding-bottom: 15px;
+}
+.index_mar_right15{
+  margin-right: 15px;
+}
+.index_pad_top15 a,.pr_color{
+  color: #23527c;
+}
+.index_bgcolor{
+  background-color: #f6f6f6;
+}
+.index_ellipsis{
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+/* index page end */
+/*authSongs认证歌曲,purchaseRecord购买记录---css开始*/
+.navtitle{overflow: hidden;}
+.navtop1{display: inline-block;min-width: 25%;}
+.btnWider{padding-left:30px ;padding-right: 30px;background-color: #fff;color: #333;border: 1px solid #ccc;}
+.marginv0{margin-left: 0;margin-right: 0;}
+.tablewrap{margin-top: 20px;}
+.tablewrap .table th{background-color: #f0f0f0;text-align: center;border:none;padding-top: 15px;padding-bottom: 15px;font-size: 14px;}
+.tablewrap .table td{border:none;border-bottom: 1px solid #f2f2f2; text-align: center;padding-top: 15px;padding-bottom: 14px;font-size: 12px;}
+.tablewrap .authsongCheck{cursor: pointer;}
+/*authSongs认证歌曲,purchaseRecord购买记录---css结束*/
+
+/*+++++++++++accountCenter开始++++++++++++++++++*/
+#accountCenter:hover{
+	cursor: pointer;
+}
+
+.accountCenter h3{
+	height: 28px;
+	line-height: 28px;
+	font-size: 16px;
+	padding-left: 10px;
+}
+
+
+.accInformation{
+	width: 140px;
+	height: 120px;
+	border: 1px solid #ccc;
+	text-align: center;
+	margin-top: 20px;
+}
+.accInformation1{
+	width: 160px;
+	height: 140px;
+	margin-top: 0;
+}
+.fontStyle{
+	font-size: 18px;
+	margin-top: 40px;
+	height: 25px;
+}
+.fontColor{
+	color: #9e9e9e;
+}
+.fontBlue a{
+	color: blue;
+	text-decoration: underline;
+	cursor:pointer
+}
+
+.table_border{
+	border: 1px solid #ccc;
+	padding: 10px;
+}
+.table_border p{
+	padding-left: 70%;
+}
+.table_border td{
+	text-align: center;
+}
+.table_border th{
+	text-align: center;
+}
+/*++++++++++++accountDetails开始+++++++++++++++++++++++++++*/
+caption{
+	font-size:16px;
+}
+.accountDetails h3{
+	height: 28px;
+	line-height: 28px;
+	font-size: 16px;
+	padding-left: 10px;
+}
+.table_border th{
+	font-weight: bold;
+}
+
+/*broadcastPage页面样式开始*/
+.bdcast_body{
+  background:#eee;position: relative;
+}
+.bdcast_box{
+    width:60%;
+		border-radius: 10px;
+		box-shadow: 0px 0px 50px #aaa;
+		position: absolute;
+		top:50px;
+		left:20%;
+		box-sizing: border-box;
+		padding: 0px;
+}
+.bdcast_message{
+	margin:20px 0px 75px 0px;
+}
+.bdcast_mes_song img{
+	max-width: 150px;
+}
+.bdcast_mes_song h4{
+	padding: 10px 0px;
+}
+@media (min-width:750px) and (max-width:1200px) {
+  .bdcast_mes_song>div{
+    text-align: center;
+  }
+}
+.bdcast_mes_word{
+	max-height: 340px;
+	margin-top: 20px;
+	overflow-y:scroll;
+}
+.bdcast_mes_word p{
+	text-align: center;
+	font-size: 16px;
+}
+.bdcast_mes_down{
+	margin: 20px 0px;
+}
+.bdcast_mes_down a{
+	margin-right: 20px;
+}
+.bdcast_mes_down p{
+	font-size: 18px;
+}
+.bdcast_mes_block{
+  margin:0px 10px;
+}
+.tab_box{
+  width: 100%;
+  height: auto;
+
+}
+.tab{
+    width:100%;
+    overflow:hidden;
+    position: relative;
+    z-index: 10;
+    bottom:-1px;
+}
+.tab li{
+    float:left;
+    height:30px;
+    line-height:30px;
+    text-align:center;
+    cursor:pointer;
+    box-sizing: border-box;
+    padding: 0px 10px;
+    font-size:16px;
+    border: 1px solid #ccc;
+    background: #eee;
+}
+.tab li.cur{
+    border-bottom:none;
+}
+.tab_con{
+    width:100%;
+    display: none;
+    border: 1px solid #ccc;
+    max-height: 450px;
+}
+.on{
+    display:block;
+}
+.bdcast_table{
+  margin-bottom: 0px;
+}
+.bdcast_table>tbody>tr>th{
+  line-height: 2;
+}
+.bdcast_table>tbody>tr>td, .bdcast_table>tbody>tr>th{
+  border:none;
+  text-align: center;
+}
+.bdcast_table>tbody>.bacast_table_tr td{
+  border-top: 1px solid #ccc;
+}
+.bdcast_table>tbody>tr>td:nth-child(1)>span{
+  display: inline-block;
+  width: 100px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.bdcast_control_bar{
+	width: 100%;
+	height: auto;
+	position: absolute;
+	bottom: 0px;
+	left: 15px;
+	border-top: 1px solid #ccc;
+	padding: 10px 0px;
+}
+.bdcast_row{
+    padding:10px 0px;
+}
+.bdcast_stop span{
+    cursor: pointer;
+    color: #ed061a;
+    font-size: 35px;
+    background-color: #ed061a;
+    border-radius: 50%;
+    color: white;
+    font-size: 20px;
+    padding: 8px;
+    margin-right: 10px;
+}
+.bdcast_stop span:hover{
+
+}
+.bdcast_bar{
+    height:40px;
+    line-height:40px;
+}
+.bdcast_bar .progress{
+    margin:10px 0 0 0;
+}
+.bdcast_time{
+    line-height:40px;
+}
+.bdcast_volume{
+  line-height: 40px;
+  position: relative;
+}
+.bdcast_volume span:first-child{
+  font-size:20px;
+  color: #ed061a;
+  top: 5px;
+}
+.bdcast_volume span:last-child{
+  display: inline-block;
+  width: 50%;
+  height: 5px;
+  background: #ed061a;
+  margin-bottom: 2px;
+}
+.progressi{
+    width: 100%;
+    height: 20px;
+    background-color: #f5f5f5;
+    position: relative;
+    margin-top: 10px;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+}
+.progressi .ibar {
+    width: 0px;
+    height: 20px;
+    background-color: #ed061a;
+    position: absolute;
+    border-radius: 5px;
+}
+@media (min-width:750px) and (max-width:1450px) {
+  .bdcast_stop{
+    line-height: 40px;
+  }
+  .bdcast_stop span{
+      font-size: 16px;
+  }
+  .bdcast_time{
+      font-size: 16px;
+  }
+}
+/*broadcastPage页面样式结束*/
+/*认证*/
+.htapWin .modal-dialog{
+	width:72%;
+}
+.htapWin .modal .close{
+	font-size:36px;
+}
+.htapWin .modal-box{
+	border:1px solid #ddd;
+	border-radius:4px;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	padding:20px 60px;
+	box-sizing:border-box;
+}
+#myModal2 .modal-box{
+	min-height:320px;
+	max-height:320px;
+	overflow-y:scroll;
+}
+.htapWin .modal-body{
+	padding:10px 30px;
+}
+.htapWin .modal-box .row{
+	padding-bottom:60px;
+}
+.htapWin .modal-box p{
+	height:42px;
+	line-height:42px;
+}
+.htapWin .modal-box p input{
+	height:32px;
+	line-height:32px;
+	border-radius:2px;
+	border:1px solid #ddd;
+	padding-left:5px;
+	margin-left:10px;
+}
+.htapWin .modal-footer{
+	text-align:center;
+	border:none;
+}
+
+.htapWin .btn{
+	width:120px;
+	height:40px;
+	line-height:40px;
+	padding:0;
+}
+.htapWin .progressInfo img{
+	display:block;
+	margin:0 auto;
+	margin-top:26px;
+}
+#table_view td{
+	text-align:center;
+	padding-bottom:10px;
+}
+
+#table_view td input{
+	width:128px;
+	height:32px;
+	border:1px solid #ddd;
+	border-radius:4px;
+	text-align:center;
+}
+.tapWin {
+	width:37%;
+	position:fixed;
+	top:20%;
+	left:50%;
+	margin-left:-18.5%;
+	border:1px solid #ddd;
+	border-radius:4px;
+	z-index:3000;
+	display:none;
+	background:#f2f2f2;
+}
+.tapWin .dialog{
+	padding:10px;
+}
+.tapWin .dialog-header{
+	border-bottom:1px solid #ddd;
+	line-height:30px;
+}
+.tapWin .dialog-body{
+	padding:22px 40px 15px 40px;
+}
+.tapWin .dialog-body h3{
+	text-align:center;
+	color:#990000;
+	font-size:20px;
+	font-weight:bold;
+}
+.tapWin .dialog-body p{
+	line-height:32px;
+}
+.tapWin .dialog-body input{
+	border:1px solid #ddd;
+	border-radius:4px;
+	padding-left:10px;
+	height:32px;
+	outline:none;
+}
+.tapWin .dialog-footer{
+	border-top:1px solid #ddd;
+	padding-top:15px;
+	overflow:hidden;
+  text-align: center;
+}
+.tapWin .dialog-footer a{
+	display:block;
+	width:120px;
+	height:40px;
+	line-height: 40px;
+	text-align:center;
+	border:1px solid #ddd;
+	border-radius:4px;
+	float:left;
+}
+.dialog-footer .checkBtn{
+	margin-left:23%;
+	margin-right:2%;
+	background:red;
+	color:#fff;
+}
+.dialog-footer .cancle{
+	margin-left:2%;
+	margin-right:23%;
+}
+/*认证明细*/
+.aBtn{
+  display:inline-block;
+  background:red;color:#fff;
+  width:100px;text-align:center;
+  height:32px;line-height:32px;
+  cursor:pointer;
+}
+a.aBtn:hover{
+  color:#fff;
+}
+#table_view tr td.subTd span.sub{
+  border: 2px solid red;
+  border-radius: 50%;
+  width: 26px;
+  color: red;
+  font-size: 40px;
+  height: 26px;
+  line-height: 16px;
+  cursor: pointer;
+  float: left;
+}
+#table_view dl .ddStyle{
+  /*margin:0 40px;*/
+  margin-right:50px;
+}
+#table_view dl dd:last-child{
+  border: 2px solid red;
+  border-radius: 50%;
+  width: 26px;
+  color: red;
+  font-size: 40px;
+  height: 26px;
+  line-height: 16px;
+  cursor: pointer;
+}
+#table_view dl .line{
+  width:60px;
+  height:42px;
+  margin-top:-21px;
+  border-left:1px solid #ddd;
+  border-bottom:1px solid #ddd
+}

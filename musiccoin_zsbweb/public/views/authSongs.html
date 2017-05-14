@@ -1,0 +1,477 @@
+﻿
+		<div>
+			<h4 class="navtitle">
+				<span id="numSong" class="navtop1">认证歌曲数量：<span >0</span>首</span>
+				<!--<button class="btn btn-default btnWider" type="button">认证</button>-->
+				<button type="button" id="identify" class="btn btn-primary btnWider" data-toggle="modal" data-target='#myModal1'>认证</button>
+			</h4>
+			<div class="row marginv0"><!--col-lg-3 col-xs-3 col-md-3-->
+				<div class="pull-right">
+					<button class="btn btn-default btnWider" id="authSongSearch" type="button">搜索</button>
+				</div>
+				<div class=" col-xs-4 pull-right">
+					<input type="text" class="form-control" id="authSongInput" placeholder="歌曲名">
+				</div>
+			</div>
+			<div class="tablewrap">
+				<table id="authSongsList" class="table" border="0" cellspacing="0" cellpadding="0">
+					<thead>
+						<tr>
+							<th>歌曲名</th>
+							<th>歌曲作者</th>
+							<th>认证时间</th>
+							<th>播放次数</th>
+							<th>购买版权次数</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+			</div>
+		</div>
+		<!--认证点击弹窗部分-->
+		<div class="modal fade htapWin" id="myModal1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h3 class="modal-title">认证歌曲</h3>
+            </div>
+            <div class="progressInfo">
+            	<img src="../images/baseInfo.png" alt="" />
+            </div>
+            <div class="modal-body">
+              <div class="modal-box">
+                 <div class="row">
+                   <div class="col-md-6">
+                     <p>歌曲名称 <input id="sname" type="text" placeholder="请输入歌曲名" /></p>
+                     <p>歌曲文件 <input type="text" placeholder="请输入歌曲文件" /></p>
+                     <p>图片文件 <input type="text" placeholder="请输入图片文件" /></p>
+                     <p>播放费用 <input id="splayPay" type="text" placeholder="请输入购买播放所需费用" /> 元</p>
+                     <p>版权费用 <input id="sbuyPay" type="text" placeholder="请输入歌曲名" /> 元</p>
+                   </div>
+                   <div class="col-md-6">
+                     <p>歌曲作者 <input id="sauthor" type="text" placeholder="请输入歌曲作者" /></p>
+                     <p>歌曲地址 <input id="saddress" type="text" placeholder="请输入歌曲地址" /></p>
+                     <p>图片地址 <input id="spicaddr" type="text" placeholder="请输入图片地址" /></p>
+                   </div>
+                 </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger"  id="jingSubmitBtn">下一步</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- next -->
+      <div class="modal fade htapWin" id="myModal2" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h3 class="modal-title">认证歌曲</h3>
+            </div>
+            <div class="progressInfo">
+            	<img src="../images/copyInfo.png" alt="" />
+            </div>
+            <div class="modal-body">
+              <div class="modal-box">
+								<table  id="table_view" width="100%">
+              		<tr>
+              			<td width="23%">版权类型</td>
+              			<td width="23%">版权所有者</td>
+              			<td width="23%">版权权益（%）</td>
+              			<td width="31%"></td>
+              		</tr>
+              		<tr data-sort=1 data-val=0 data-parent="true" data-hasP="false">
+			  						<td width="23%"><input class="inpa" type="text" placeholder="输入版权类型"/></td>
+			  						<td width="23%"><input type="text" class="scontributors inpa" placeholder="输入版权所有者账号"/></td>
+			  						<td width="23%"><input type="text" class="sshares inpa" placeholder="输入权益比例"/></td>
+			  						<td width="31%">
+											<a class="aBtn mingxi">+版权明细</a>
+											<a class="aBtn banquan">+版权</a>
+										</td>
+  								</tr>
+              	</table>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-toggle="modal" data-target='#myModal1' data-dismiss="modal" >上一步</button>
+              <button type="button" class="btn btn-danger" id="modalSubmit">提交</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--支付提示-->
+
+			<div class="tapWin">
+      	<div class="dialog">
+      		<div class="dialog-header">提示</div>
+      		<div class="dialog-body">
+      			<h3 style="margin:30px 0 40px">请输入您的支付密码进行作品认证！</h3>
+            <p>支付密码：<input type="password" placeholder="输入支付密码" id="payPwd" /></p>
+      		</div>
+      		<div class="dialog-footer">
+      			<a href="#" id="passwordCheckBtn" class="checkBtn">确定</a>
+      			<a href="#" id="passwordCancle" class="cancle">取消</a>
+      		</div>
+      	</div>
+      </div>
+
+<script type="text/template" id="temp_mingxi">
+	<tr data-val=1 data-parent=false data-hasP=true>
+		<td colspan='4'>
+			<dl class="bqmx clearfix" style="margin-left:50px">
+				<dd class="left line"> &nbsp;  </dd>
+				<dd class="left ddStyle"><input class="inpa" type="text" placeholder="输入版权类型"/></dd>
+				<dd class="left ddStyle"><input type="text" class="scontributors inpa" placeholder="输入版权所有者账号"/></dd>
+				<dd class="left ddStyle"><input type="text" class="sshares inpa" placeholder="输入权益比例"/></dd>
+				<dd class="left ddStyle sub">-</dd>
+			</dl>
+		</td>
+	</tr>
+</script>
+<script type="text/template" id="temp_view">
+	<tr data-val=0 data-parent=true data-hasP=false>
+		<td width="20%"><input class="inpa" type="text" placeholder="输入版权类型"/></td>
+		<td width="20%"><input type="text" class="scontributors inpa" placeholder="输入版权所有者账号"/></td>
+		<td width="20%"><input type="text" class="sshares inpa" placeholder="输入权益比例"/></td>
+		<td width="40%" class="subTd"><span class="sub">-</span></td>
+	</tr>
+</script>
+<!-- <script type="text/template" id="temp_views">
+	<tr data-parent="true" data-hasP="false">
+		<td width="20%"><input type="text" placeholder="输入版权类型"/></td>
+		<td width="20%"><input type="text" class="scontributors" placeholder="输入版权所有者账号"/></td>
+		<td width="20%"><input type="text" class="sshares" placeholder="输入权益比例"/></td>
+		<td width="40%">
+			<a class="aBtn mingxi">+版权明细</a>
+			<a class="aBtn banquan">+版权</a>
+		</td>
+	</tr>
+</script> -->
+
+<script type="text/template" id="auth_songs_list">
+	<tr>
+		<td>%s</td>
+		<td>%n</td>
+		<td>%t</td>
+		<td>%p</td>
+		<td>%b</td>
+		<td><a data-action="selfAuth" class="pr_color authsongCheck" data-val=%l target="_blank">查看</a></td>
+	</tr>
+</script>
+<script type="text/javascript">
+	;!function(){
+		//认证歌曲弹框 添加tr及删除tr
+		$("#table_view").click(function(e){
+			var target = e.target;
+			if(target.nodeName === 'DD' || target.nodeName === 'SPAN'){
+				if($(target).hasClass("sub")){
+					$(target).parents("tr").remove();
+				}
+			}else if(target.nodeName === 'A'){
+				if($(target).hasClass("mingxi")){
+					var sort = $(target).parents("tr").attr("data-sort");
+					console.log(sort);
+					$('#table_view').find("tbody").append($('#temp_mingxi').text());
+				}else{
+					$('#table_view').find("tbody").append($('#temp_view').text());
+				}
+			}
+		});
+		//歌曲列表接口
+		songsList();
+
+	/**
+		认证歌曲界面：歌曲列表接口
+	**/
+	function songsList(){
+		$("#authSongsList").find("tbody tr th").show();
+		$("#authSongsList").find("tbody tr td").remove();
+		$.ajax({
+			url:"/songsList",
+			type:"POST",
+			timeout:"3000000",
+			data:{
+				authsong:1
+			},
+			success:function(res){
+				var arr = [];
+				for(var i = 0; i < res.data.length; i++){
+					var title = res.data[i].title,
+							artist = res.data[i].artist,
+							timer = res.data[i].time,
+							playCount = res.data[i].playCount,
+							buyCount = res.data[i].buyCount,
+							lis = res.data[i].lis;
+					arr.push({title:title,artist:artist,time:changeByReg(timer),playCount:playCount,buyCount:buyCount,lis:lis});
+				}
+				// console.log(arr.length);
+				$("#authSongsList").find("tbody").append(generateStringByTemplate({
+					id:"auth_songs_list",
+					params:{"%s":"title","%n":"artist","%t":"time","%p":"playCount","%b":"buyCount","%l":"lis"},
+					data:arr
+				}));
+				//认证歌曲数目
+				$("#numSong").find("span").text(arr.length);
+			}
+		});
+	}
+	//时间戳处理函数
+	function changeByReg(num){
+		num = num || 1493103810;
+		var newDate = new Date();
+		newDate.setTime(num * 1000);
+		var str = newDate.toLocaleString()
+		var reg_a = /[\u4e00-\u9fa5]|[/]/g
+
+		var newstr = str.replace(reg_a,function(t){
+			if(t === '/'){
+				return '-';
+			}
+			if(/[\u4e00-\u9fa5]/.test(t)){
+				return '';
+			}
+		})
+		return newstr;
+	}
+
+	$('#table_view').delegate('.addItem','click',function(){
+		$('#table_view').append($('#temp_view').text());
+	})
+	/**
+		table列表：查看按钮接口调用
+	**/
+	$("#authSongsList").click(function(e){
+		var target = e.target;
+		if(target.nodeName === 'A'){
+			if($(target).hasClass("authsongCheck")){
+				var lisence = $(target).attr("data-val");
+				var action = $(target).attr("data-action");
+				$.ajax({
+					url:"/detailMess",
+					type:"POST",
+					timeout:300000,
+					data:{
+						addr:lisence,
+						action:action,
+						page:1
+					},
+					success:function(res){
+						//console.log(res.data);
+						var time = changeByReg(res.data[2]),
+								action = res.data[3],
+								lis = res.data[4];
+						window.open("broadcastPage.html?title="+res.data[0] +"&artist="+ res.data[1] +"&time="+ time +"&action="+ action +"&lis="+ lis +"");
+					}
+				});
+			}
+		}
+	});
+	/**
+		输入框搜索筛选table内容功能
+	**/
+	$("#authSongSearch").click(function(){
+		var txt = $("#authSongInput").val();
+		// console.log(txt);
+		$("#authSongsList").find("tbody tr").hide().filter(":contains('"+ txt +"')").show();
+	});
+
+	/**
+		点击认证按钮，清空弹框内容
+	**/
+	$("#identify").click(function(){
+		$("#myModal1").find("input").val("");
+		$("#myModal2").find("input").val("");
+	});
+
+	/**
+		作品认证过程中输入框为空判断
+	**/
+	$("#jingSubmitBtn").click(function(){
+		// $("#myModal2").show();
+		// $('#myModal2').css('opacity',1);
+		var $sname = $("#sname").val(),
+        $sauthor = $("#sauthor").val(),
+        $saddress = $("#saddress").val(),
+        $spicaddr = $("#spicaddr").val(),
+				$splayPay = $("#splayPay").val(),
+				$sbuyPay = $("#sbuyPay").val();
+		 if($sname==''){
+			 confirm('歌曲名称不能为空');
+		 }else if($sauthor==''){
+			 confirm('歌曲作者不能为空');
+		 }else if($saddress==''){
+			 confirm('歌曲地址不能为空');
+		 }else if($spicaddr==''){
+			 confirm('图片地址不能为空');
+		 }else if($splayPay==''){
+			 confirm('播放费用不能为空');
+		 }else if($sbuyPay==''){
+			 confirm('版权费用不能为空');
+		 }else{
+				$(this).attr({"data-toggle":"modal","data-target":"#myModal2","data-dismiss":"modal"});
+		 }
+	});
+	$("#modalSubmit").click(function(e){
+		var $stableTr = $("#table_view").find("tr");
+		var _value = [],flag = false,sharesArr1 = [],sharesArr2 = [],sum1 = 0,sum2=0;
+
+	  for(var i = 0; i<$(".inpa").length;i++){
+			_value.push($(".inpa").eq(i).val());
+		}
+		// console.log(_value);
+		for(var i = 1;i<$stableTr.length; i++){
+			var	td_eq0 = $($stableTr[i]).find("td").eq(0),
+				td_shares = $($stableTr[i]).find("td").eq(2),
+				$shares1 = $(td_shares).find("input").val(),
+				$shares2 = $(td_eq0).find('dl dd').eq(3).find("input").val();
+
+			var data_pval = $($stableTr[i]).attr("data-parent");
+			if(data_pval == 'true'){
+				sharesArr1.push($shares1);
+				var _shares2 = [];
+				var _nextAll = $($stableTr[i]).nextAll();
+				console.log($(_nextAll));
+				for(var j = 0; j<_nextAll.length; j++){
+				    if($(_nextAll[j]).attr('data-val')== '1'){
+                    _shares2.push($(_nextAll[j]).find('dl dd').eq(3).find('input').val());
+                }else{
+		        break;
+					}
+
+				}
+                sharesArr2.push(_shares2);
+			}
+		}
+		// console.log(sharesArr1)
+//		 console.log(sharesArr2)
+		for(var i = 0; i<sharesArr1.length; i++){
+			sum1 =parseInt(sum1)+parseInt(sharesArr1[i]);
+		}
+		console.log(sum1);
+		for(var i = 0; i<sharesArr2.length; i++){
+		    sum2 = 0;
+		    for(j = 0;j<sharesArr2[i].length;j++){
+		        sum2 = parseInt(sum2)+parseInt(sharesArr2[i][j]);
+			}
+//			sum2 =parseInt(sum2)+parseInt(sharesArr2[i]);
+			console.log('sum2  '+sum2);
+		}
+		for(var i = 0; i<_value.length; i++){
+			if(_value[i] == ''){
+				flag = false;
+				break;
+			}else{
+				flag = true;
+			}
+		}
+		if(!flag){
+			confirm('请填写完整版权信息！');
+		}else{
+			if((sum1 == 100 && sum2 == 100) || (sum1 == 100 && sum2 == 0)){
+				$('.tapWin').show();
+			}else{
+				confirm("版权权益应为100%");
+			}
+		}
+	});
+	/**
+		作品认证支付密码提示框：确定按钮调取接口
+	**/
+	$("#passwordCheckBtn").click(function(){
+		var $sname = $("#sname").val(),
+        $sauthor = $("#sauthor").val(),
+        $saddress = $("#saddress").val(),
+        $spicaddr = $("#spicaddr").val(),
+				$splayPay = $("#splayPay").val(),
+				$sbuyPay = $("#sbuyPay").val(),
+				$spassword = $("#payPwd").val();
+		var $stableTr = $("#table_view").find("tr");
+		var isP_arr = [],
+				hasP_arr = [],
+				parents_arr = [],
+				con_arr = [], //版权所有者
+				shares_arr = [],//版权权益
+				benefit_arr = []; //版权类型
+		for(var i = 1,len = $stableTr.length; i < len; i++){
+			var j;
+			var td_eq0 = $($stableTr[i]).find("td").eq(0),
+					$benefit = $(td_eq0).find("input").val(),
+					td_con = $($stableTr[i]).find("td").eq(1),
+					$con1 = $(td_con).find("input").val(),
+					$con2 = $(td_eq0).find('dl dd').eq(2).find("input").val(),
+					td_shares = $($stableTr[i]).find("td").eq(2),
+					$shares1 = $(td_shares).find("input").val(),
+					$shares2 = $(td_eq0).find('dl dd').eq(3).find("input").val();
+			var data_pval = $($stableTr[i]).attr("data-parent");
+
+			if(data_pval == 'true'){
+				j = i-1;
+				isP_arr.push(false);
+				hasP_arr.push(false);
+				parents_arr.push(0);
+				con_arr.push($con1);
+				shares_arr.push($shares1);
+			}else{
+				isP_arr.push(false);
+				isP_arr[j] = true;
+				hasP_arr.push(true);
+				parents_arr.push(j);
+				con_arr[j] = '';
+				con_arr.push($con2);
+				shares_arr.push($shares2);
+			}
+			benefit_arr.push($benefit);
+		}
+		// console.log(isP_arr);
+		// console.log(hasP_arr);
+		// console.log(parents_arr);
+		// console.log(con_arr);
+		// console.log(shares_arr);
+		// console.log(benefit_arr);
+		// console.log($spassword);
+		$('.tapWin').hide();
+		$.ajax({
+      url:"/attestSong",
+      type:"POST",
+      timeout : 300000,
+      data:{
+        title:$sname,
+        artist:$sauthor,
+        imageUrl:$spicaddr,
+        metadataUrl:$saddress,
+				playPrice:$splayPay,
+				buyPrice:$sbuyPay,
+				password:$spassword,
+				//向后台传数据只能传串，通过join方法将数组变成字符串
+				isParent:isP_arr.join(','),
+				hasParent:hasP_arr.join(','),
+				parents:parents_arr.join(','),
+				contributors:con_arr.join(','),
+				shares:shares_arr.join(','),
+				benefitTypes:benefit_arr.join(',')
+      },
+      success:function(response){
+				$('#pageCon').load("authSongs.html");
+				$(".fade").hide();
+      },
+      error:function(e){
+
+      }
+    });
+	});
+	/**
+		作品认证支付密码提示框：取消按钮，显示前一个弹框内容
+	**/
+	$("#passwordCancle").click(function(){
+		$('.tapWin').find("input").val("");
+		$('.tapWin').hide();
+		$("#myModal2").show();
+	});
+}();
+</script>

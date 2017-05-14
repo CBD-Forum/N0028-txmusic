@@ -1,0 +1,30 @@
+{
+  "name": "example",
+  "description": "example showing off how to use brace with browserify to include an ace editor in a page",
+  "main": "example.js",
+  "scripts": {
+    "browser-test": "nightwatch --config nightwatch.js --env local",
+    "browser-test-remote-chrome": "nightwatch --config nightwatch.js --env chrome",
+    "browser-test-remote-firefox": "nightwatch --config nightwatch.js --env default",
+    "browser-test-remote-ie": "nightwatch --config nightwatch.js --env ie",
+    "browser-test-remote-safari": "nightwatch --config nightwatch.js --env safari",
+    "browser-test-remote-parallel": "nightwatch --config nightwatch.js --env safari,ie,default,chrome",
+    "build": "mkdir build; browserify src/index.js -g yo-yoify -o build/app.js -t [ babelify ]; babel --plugins=transform-es2015-template-literals build/app.js --out-file build/app.js",
+    "csslint": "csslint --ignore=order-alphabetical --errors='errors,duplicate-properties,empty-rules' --exclude-list='assets/css/font-awesome.min.css' assets/css/",
+    "downloadsolc": "rm soljson.js; wget https://ethereum.github.io/solc-bin/soljson.js",
+    "lint": "standard",
+    "serve": "http-server .",
+    "test": "standard; babel src --out-dir babelify-src; node test/index.js"
+  },
+  "dependencies": {
+    "browserify": "~2.13.2",
+    "brace": "~0.1.1"
+  },
+  "devDependencies": {},
+  "keywords": [],
+  "author": {
+    "name": "Thorsten Lorenz",
+    "email": "thlorenz@gmx.de",
+    "url": "http://thlorenz.com"
+  }
+}

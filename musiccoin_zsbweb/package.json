@@ -1,0 +1,15 @@
+{
+  "name": "music",
+  "version": "1.0.0",
+  "description": "music",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "haiyun",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.2",
+    "web3": "^0.18.4"
+  }
+}

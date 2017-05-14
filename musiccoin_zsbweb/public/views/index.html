@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+    	<!--<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+	<title>个人主页</title>
+
+	<link rel="stylesheet" type="text/css" href="../styles/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../styles/css/styles.css">
+
+</head>
+<body for_script="index">
+  <div class="header">
+    <h3 class="left">音乐版权管理</h3>
+    <p class="right"><span>张三&nbsp;</span><span id="accountCenter">账户中心&nbsp;</span><span>退出&nbsp;</span></p>
+  </div>
+	<div class="container">
+	  <div class="row">
+	    <div class="aside  col-md-2 col-sm-4 col-xs-4">
+	      <ul id="loadPage">
+			  <li class=" active index_approve_music">认证歌曲</li>
+	        <li class="index_find_music">发现歌曲</li>
+	        <li class="bor_li index_buy_record">购买记录</li>
+	      </ul>
+	    </div>
+	    <div class="content  col-md-10 col-sm-8 col-xs-8"  id="pageCon">
+	    </div>
+	  </div>
+	</div>
+
+   	<script type="text/javascript" src="../js/libs/jquery-3.2.0.min.js"></script>
+   	<script type="text/javascript" src="../js/libs/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../js/controller/load.js"></script>
+    <script type="text/javascript" src="../js/controller/generateStringByTemplate.js"></script>
+
+</body>
+</html>

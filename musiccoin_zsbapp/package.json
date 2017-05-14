@@ -1,0 +1,26 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "electron": "^1.6.2",
+    "electron-prebuilt": "^1.4.13",
+    "electron-packager": "^8.6.0",
+    "express": "^4.15.2"
+  },
+  "devDependencies": {
+    "electron": "^1.6.5",
+    "electron-package": "^0.1.0",
+    "electron-packager": "^8.6.0",
+    "electron-prebuilt": "^1.4.13"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "package": "electron-packager ./ app --all --out=./finish --overwrite --ignore=\"(dist|node_modules)\"",
+    "packageWin": "electron-packager . app --platform=win32 --arch=x64 --icon=hosts.ico --out=./finish --asar --app-version=2.0.1 --ignore=\"(dist|src|docs|.gitignore|LICENSE|README.md|webpack.config.js|node_modules)\"",
+    "packageLinux": "electron-packager . appa --platform=linux --arch=x64 --out=./finish --asar --app-version=2.0.1 --overwrite --ignore=\"(dist|src|docs|.gitignore|LICENSE|README.md|webpack.config.js|node_modules)\""
+  },
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,212 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+    	<!--<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+	<title>个人主页</title>
+
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+</head>
+<body for_script="index" id="purchaseRecord">
+  <div class="header">
+    <h3 class="left">音乐版权管理</h3>
+    <p class="right"><span>张三&nbsp;</span><span id="accountCenter">账户中心&nbsp;</span><span>退出&nbsp;</span></p>
+  </div>
+	<div class="container">
+	  <div class="row">
+	    <div class="aside  col-md-2 col-sm-4 col-xs-4">
+	      <ul id="loadPage">
+					<li class="index_find_music"><a href="../index.html">发现歌曲</a></li>
+	        <li class="active bor_li index_buy_record"><a href="../views/purchaseRecord.html">购买记录</a></li>
+	        <li class="index_approve_music"><a href="../views/authSongs.html">认证歌曲</a></li>
+	      </ul>
+	    </div>
+	    <div class="content  col-md-10 col-sm-8 col-xs-8"  id="pageCon">
+
+				<div>
+<h4 class="navtitle">
+	<span class="navtop1">购买记录</span>
+	<button class="btn btn-default btnWider" type="button" id="BuyBtn">购买</button>
+</h4>
+<div class="row marginv0"><!--col-lg-3 col-xs-3 col-md-3-->
+	<div class="pull-right">
+		<button id="searchBtn" class="btn btn-default btnWider" type="button">搜索</button>
+	</div>
+	<div class=" col-xs-4 pull-right">
+		<input type="text" class="form-control" id="regstr" placeholder="歌曲名">
+	</div>
+</div>
+<div class="tablewrap">
+	<table class="table" border="0" cellspacing="0" cellpadding="0">
+		<thead>
+			<tr>
+				<th>歌曲名</th>
+				<th>歌曲作者</th>
+				<th>购买时间</th>
+				<th>购买类型</th>
+				<th colspan="3">操作</th>
+			</tr>
+		</thead>
+		<tbody id="songtable"></tbody>
+	</table>
+	<!--歌曲列表模板-->
+	<script type="text/template" id="recordTemp">
+		<tr>
+			<td>%na</td>
+			<td>%au</td>
+			<td>%ti</td>
+			<td>%pt</td>
+			<td><button type="button" class="btn btnModify pers" data-toggle="%tog" data-target='#musicPlay' data-title='%na' data-artist="%au" data-time="%ti" data-action="play" data-num=1 data-val="%addr" isbought="%isb">播放</button></td>
+			<td><button type="button" class="btn btnModify pers" data-toggle="modal" data-target='#buyCopy' %dis  data-action="buy" data-num=2 data-val="%addr">购买版权</button></td>
+			<td><button class="btn btnModify pers" target="_blank" data-action="mess" data-val="%addr" data-title='%na' data-artist="%au" data-time="%ti"  isbought="%isb">查看</button></td>
+		</tr>
+	</script>
+</div>
+</div>
+
+
+<!--购买版权弹框-->
+<div class="modal fade pmodal musicPlayAndBuy" tabindex="-1" id="buyCopy" role="dialog">
+
+</div>
+<!--购买版权-确认支付弹框-->
+<!-- <div class="tapWin" id="buySure">
+<div class="dialog">
+	<div class="dialog-header">支付完成</div>
+	<div class="dialog-body">
+		<h3>支付完成！您可以到已购歌曲目录下查看购买的歌曲！</h3>
+	</div>
+	<div class="dialog-footer">
+		<button type="button" class="btn btn-danger continueBuy">继续购买</button>
+		<button type="button" class="btn btn-default" id="indexBuyMusic">已购歌曲</button>
+	</div>
+</div>
+</div> -->
+<!-- <div class="modal fade pmodal" tabindex="-1" id="buySure" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h3 class="modal-title index_pay">支付完成</h3>
+			</div>
+			<div class="modal-body index_pad">
+				<h3 class="index_pay_style">支付完成！您可以到已购歌曲目录下查看购买的歌曲！</h3>
+			</div>
+			<div class="modal-footer index_txt_center">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">继续购买</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal" id="indexBuyMusic">已购歌曲</button>
+			</div>
+		</div>
+	</div>
+</div> -->
+<!--点击播放弹框-->
+<div class="modal fade pmodal musicPlayAndBuy" tabindex="-1" id="musicPlay" role="dialog">
+</div>
+<!--播放弹框点击确认支付弹框-->
+<div class="tapWin" id="buySure2">
+	<div class="dialog">
+		<div class="dialog-header">支付完成</div>
+		<div class="dialog-body">
+			<h3 >支付成功！</h3>
+		</div>
+		<div class="dialog-footer">
+			<button type="button" class="btn btn-danger payableClose">关闭</button>
+		</div>
+	</div>
+</div>
+<!-- <div class="modal fade pmodal" tabindex="-1" id="buySure2" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h3 class="modal-title index_pay">支付完成</h3>
+			</div>
+			<div class="modal-body index_pad">
+				<h3 class="index_pay_style">支付成功！</h3>
+			</div>
+			<div class="modal-footer index_txt_center">
+				<button type="button" class="btn btn-danger" data-dismiss="modal">关闭</button>
+			</div>
+		</div>
+	</div>
+</div> -->
+<script type="text/template" id="songs_play">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h3 class="modal-title index_pay">支付提示</h3>
+			</div>
+			<div class="modal-body index_pad">
+				<h3 class="index_pay_style">您需要支付&nbsp<span>%s</span>&nbspEther&nbsp播放费用，我们将从您的账户中扣除！</h3>
+				<p class="index_line32">账户余额：<span>%a</span>&nbspEther</p>
+				<p class="index_line32">支付密码：<input id="passwordPlay" type="password" placeholder="输入支付密码"/></p>
+			</div>
+			<div class="modal-footer index_txt_center">
+				<button data-action=%c data-value=%l data-num=%n type="button" class="btn btn-danger moz" data-dismiss="modal" id="indexBuySure">确认支付</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+			</div>
+		</div>
+	</div>
+</script>
+<script type="text/template" id="songs_buy">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h3 class="modal-title index_pay">支付提示</h3>
+			</div>
+			<div class="modal-body index_pad">
+				<h3 class="index_pay_style">您需要支付&nbsp<span>%s</span>&nbspEther&nbsp购买费用，我们将从您的账户中扣除！</h3>
+				<p class="index_line32">账户余额：<span>%a</span>&nbspEther</p>
+				<p class="index_line32">支付密码：<input type="password" placeholder="输入支付密码"/></p>
+			</div>
+			<div class="modal-footer index_txt_center">
+				<button data-action=%c data-value=%l data-num=%n type="button" class="btn btn-danger moz" data-dismiss="modal">确认支付</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+			</div>
+		</div>
+	</div>
+</script>
+			<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+					<script type="text/javascript" src="../js/libs/jquery-3.2.0.min.js"></script>
+			   	<script type="text/javascript" src="../js/libs/bootstrap.js"></script>
+			    <!-- <script type="text/javascript" src="js/controller/load.js"></script> -->
+			    <script type="text/javascript" src="../js/controller/generateStringByTemplate.js"></script>
+			    <script type="text/javascript" src='../js/bundle.js?t=33367768554448'></script>
+				<script>
+				  /*已购歌曲点击调转页面至购买记录*/
+					$("#indexBuyMusic").click(function(){
+						$(".modal-backdrop").hide();
+						$(".index_buy_record").addClass('active').siblings().removeClass('active');
+						$('#pageCon').load("../views/purchaseRecord.html");
+					});
+					/*购买确认支付*/
+					$("#indexBuySure").click(function(){
+						setTimeout(function(){
+				//			window.location.href = "broadcastPage.html";
+							window.open("../views/broadcastPage.html");
+						},1000);
+					});
+				/*	点击购买按钮跳转到发现歌曲页面*/
+					$("#BuyBtn").click(function(){
+						window.location.href = '../index.html';
+					});
+
+					$('#searchBtn').click(function(){
+						var txt = $('#regstr').val();
+						$("#songtable").find("tr").hide().filter(":contains('"+ txt +"')").show();
+					});
+				</script>
+
+	    </div>
+	  </div>
+	</div>
+
+</body>
+</html>

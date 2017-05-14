@@ -1,0 +1,374 @@
+
+<div>
+	<h4 class="navtitle">
+		<span class="navtop1">购买记录</span>
+		<button class="btn btn-default btnWider" type="button" id="BuyBtn">购买</button>
+	</h4>
+	<div class="row marginv0"><!--col-lg-3 col-xs-3 col-md-3-->
+		<div class="pull-right">
+			<button id="searchBtn" class="btn btn-default btnWider" type="button">搜索</button>
+		</div>
+		<div class=" col-xs-4 pull-right">
+			<input type="text" class="form-control" id="regstr" placeholder="歌曲名">
+		</div>
+	</div>
+	<div class="tablewrap">
+		<table class="table" border="0" cellspacing="0" cellpadding="0">
+			<thead>
+				<tr>
+					<th>歌曲名</th>
+					<th>歌曲作者</th>
+					<th>购买时间</th>
+					<th>购买类型</th>
+					<th colspan="3">操作</th>
+				</tr>
+			</thead>
+			<tbody id="songtable"></tbody>
+		</table>
+		<!--歌曲列表模板-->
+		<script type="text/template" id="recordTemp">
+			<tr>
+				<td>%na</td>
+				<td>%au</td>
+				<td>%ti</td>
+				<td>%pt</td>
+				<td><button type="button" class="btn btnModify per" data-toggle="%tog" data-target='#musicPlay' data-title='%na' data-artist="%au" data-time="%ti" data-action="play" data-num=1 data-val="%addr" isbought="%isb">播放</button></td>
+				<td><button type="button" class="btn btnModify per" data-toggle="modal" data-target='#buyCopy' %dis  data-action="buy" data-num=2 data-val="%addr">购买版权</button></td>
+				<td><button class="btn btnModify per" target="_blank" data-action="mess" data-val="%addr" data-title='%na' data-artist="%au" data-time="%ti"  isbought="%isb">查看</button></td>
+			</tr>
+		</script>
+	</div>
+</div>
+
+
+<!--购买版权弹框-->
+  <div class="modal fade pmodal musicPlayAndBuy" tabindex="-1" id="buyCopy" role="dialog">
+
+  </div>
+
+	<!--点击播放弹框-->
+  <div class="modal fade pmodal musicPlayAndBuy" tabindex="-1" id="musicPlay" role="dialog">
+  </div>
+  <!--播放弹框点击确认支付弹框-->
+	<div class="tapWin" id="buySure2">
+    <div class="dialog">
+      <div class="dialog-header">支付完成</div>
+      <div class="dialog-body">
+        <h3 >支付成功！</h3>
+      </div>
+      <div class="dialog-footer">
+        <button type="button" class="btn btn-danger payableClose">关闭</button>
+      </div>
+    </div>
+  </div>
+	<!--已经购买过歌曲弹框-->
+  <div class="tapWin" id="alreadyBuy">
+    <div class="dialog">
+      <div class="dialog-header">消息提示</div>
+      <div class="dialog-body">
+        <h3>您已经购买过此首歌曲</h3>
+      </div>
+      <div class="dialog-footer">
+        <button type="button" class="btn btn-danger alreadyBuyClose">关闭</button>
+      </div>
+    </div>
+  </div>
+  <script type="text/template" id="songs_play">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h3 class="modal-title index_pay">支付提示</h3>
+        </div>
+        <div class="modal-body index_pad">
+          <h3 class="index_pay_style">您需要支付&nbsp<span>%s</span>&nbspEther&nbsp播放费用，我们将从您的账户中扣除！</h3>
+          <p class="index_line32">账户余额：<span>%a</span>&nbspEther</p>
+          <p class="index_line32">支付密码：<input id="passwordPlay" type="password" placeholder="输入支付密码"/></p>
+        </div>
+        <div class="modal-footer index_txt_center">
+          <button data-action=%c data-value=%l data-num=%n type="button" class="btn btn-danger moz" data-dismiss="modal" id="indexBuySure">确认支付</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        </div>
+      </div>
+    </div>
+  </script>
+  <script type="text/template" id="songs_buy">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h3 class="modal-title index_pay">支付提示</h3>
+        </div>
+        <div class="modal-body index_pad">
+          <h3 class="index_pay_style">您需要支付&nbsp<span>%s</span>&nbspEther&nbsp购买费用，我们将从您的账户中扣除！</h3>
+		    	<p class="index_line32">账户余额：<span>%a</span>&nbspEther</p>
+		    	<p class="index_line32">支付密码：<input type="password" placeholder="输入支付密码"/></p>
+        </div>
+        <div class="modal-footer index_txt_center">
+          <button data-action=%c data-value=%l data-num=%n type="button" class="btn btn-danger moz" data-dismiss="modal">确认支付</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        </div>
+      </div>
+    </div>
+  </script>
+
+
+<script>
+//	时间戳转日期
+	function changeByReg(num){
+		num = num || 1493103810;
+		var newDate = new Date();
+		newDate.setTime(num * 1000);
+		var str = newDate.toLocaleString();
+		var reg_a = /[\u4e00-\u9fa5]|[/]/g;
+
+		var newstr = str.replace(reg_a,function(t){
+			if(t === '/'){
+				return '-';
+			}
+			if(/[\u4e00-\u9fa5]/.test(t)){
+				return '';
+			}
+		})
+	return newstr;
+	}
+	$(function(){
+		//my
+		$.ajax({
+			type:"post",
+			url:"/purchaseRecord",
+			timeout:600000,
+			success:function(data){
+				console.log('购买记录:');
+				console.log(data);
+				if (data.data.length<1) {
+					var htmlblock="<tr><td colspan='7'>暂无购买记录</td></tr>";
+					$('#songtable').append(htmlblock);
+				} else{
+					var initarr=data.data;
+					var newarr=[];
+					var boughtarr=[];
+					for (var i=0;i<initarr.length;i++) {
+						if(initarr[i].title&&initarr[i].artist){
+							var d=initarr[i].itstime;
+							initarr[i].disable='';
+							initarr[i].toggle='modal';
+							initarr[i].datatime=changeByReg(d);
+							if (initarr[i].purpose==1) {
+								initarr[i].purposeType='播放';
+							}
+							if(initarr[i].purpose==2){
+								initarr[i].purposeType='购买版权';
+								boughtarr.push(initarr[i].lisence);
+							}
+							newarr.push(initarr[i]);
+						}
+					}
+					for (var i = 0; i < newarr.length; i++) {
+						for(var j=0;j<boughtarr.length;j++){
+							if (newarr[i].lisence==boughtarr[j]) {
+								newarr[i].isbought='bought';
+								initarr[i].toggle='';
+								initarr[i].disable='disabled="disabled"';
+							}
+						}
+					}
+					console.log(newarr);
+					var htmlblock=generateStringByTemplate({
+						id:'recordTemp',
+						params:{
+							'%na':'title',
+							'%au':'artist',
+							'%ti':'datatime',
+							'%pt':'purposeType',
+							'%dis':'disable',
+							'%addr':'lisence',
+							'%isb':'isbought',
+							'%tog':'toggle',
+							'%st':'itstime'
+						},
+						data:newarr
+					});
+					$('#songtable').html(htmlblock);
+					$('#searchBtn').click(function(){
+						var regstr=$('#regstr').val();
+						var regarr=[];
+	//					console.log(newarr);
+						for (var j=0;j<newarr.length;j++) {
+							var title=newarr[j].title;
+							if(title.match(regstr)){
+								regarr.push(newarr[j]);
+							}
+						}
+//						console.log(regarr);
+						if(regarr.length>0){
+							var newone=generateStringByTemplate({
+								id:'recordTemp',
+								params:{
+									'%na':'title',
+									'%au':'artist',
+									'%ti':'datatime',
+									'%pt':'purposeType',
+									'%dis':'disable',
+									'%addr':'lisence',
+									'%isb':'isbought',
+									'%tog':'toggle',
+									'%st':'itstime'
+								},
+								data:regarr
+							});
+
+						}else{
+							var newone="<tr><td colspan='7'>没有符合条件的搜索记录</td></tr>";
+						}
+						$('#songtable').html(newone);
+					});
+				}
+
+			},
+			error:function(err){
+				console.log('error:'+err);
+			}
+		});
+	})
+  /*已购歌曲点击调转页面至购买记录*/
+	$("#indexBuyMusic").click(function(){
+		$(".modal-backdrop").hide();
+		$(".index_buy_record").addClass('active').siblings().removeClass('active');
+		$('#pageCon').load("purchaseRecord.html");
+	});
+/*	点击购买按钮跳转到发现歌曲页面*/
+	$("#BuyBtn").click(function(){
+		$(".index_find_music").addClass('active').siblings().removeClass('active');
+		$('#pageCon').load("findMusic.html");
+	});
+	//点击列表中的播放，购买版权，查看按钮	跳转
+	$("#songtable").click(function(e){
+    var target = e.target;
+    $("#musicPlay").empty();
+    if(target.nodeName === 'BUTTON'){
+    	if($(target).attr('isbought')=='bought'){
+    		var t=$(target).attr('data-title');
+    		var a=$(target).attr('data-artist');
+    		var time=$(target).attr('data-time');
+    		var l=$(target).attr('data-val');
+    		window.open("broadcastPage.html?title="+t+"&artist="+a +"&time="+ time +"&action=buy&lis="+l);
+    	}else{
+	      if($(target).hasClass('per')){
+	        var value = $(target).attr("data-val");
+	        var num = $(target).attr("data-num");
+	        var action = $(target).attr("data-action");
+	        // console.log(value)
+	        // console.log(num)
+	        if(action == "mess"){
+	          $.ajax({
+	            url:"/detailMess",
+	            type:"POST",
+	            timeout:300000,
+	            data:{
+	              addr:value,
+	              action:action
+	            },
+	            success:function(res){
+	                console.log('/detailMess:'+res.data);
+	              var time = changeByReg(res.data[2]),
+	                  action = res.data[3];
+	              window.open("broadcastPage.html?title="+res.data[0] +"&artist="+ res.data[1] +"&time="+ time +"&action="+ action +"&lis="+value);
+	            }
+	          });
+	        }else{
+		        $.ajax({
+		          url:"/broadcastSong",
+		          type:"POST",
+		          timeout:300000,
+		          data:{
+		            addr:value,
+		            num:num,
+		            action:action
+		          },
+		          success:function(res){
+		            // console.log(res.data[0].number);
+		            /***
+		            %s:播放费用/购买费用，%a:账户金额，%l:license地址，%n:1/2区分播放与购买，
+		            %c:点击事件行为，向播放界面传数据，控制播放与下载显示
+		            ***/
+								if(res.success === 2){
+	                $("#alreadyBuy").show();
+	              }else{
+			            if(parseInt(res.data[0].number) === 1){
+			              $("#musicPlay").append(generateStringByTemplate({
+			                id:"songs_play",
+			                params:{"%s":"per","%a":"coinbaseM","%l":"licenseAddr","%n":"number","%c":"action"},
+			                data:res.data
+			              }));
+			            }else{
+			              $("#buyCopy").append(generateStringByTemplate({
+			                id:"songs_buy",
+			                params:{"%s":"per","%a":"coinbaseM","%l":"licenseAddr","%n":"number","%c":"action"},
+			                data:res.data
+			              }));
+			            }
+								}
+		          }
+		        });
+					}
+	      }
+	    }
+    }
+  });
+  $(".musicPlayAndBuy").click(function(e){
+    var target = e.target;
+    if(target.nodeName === 'BUTTON'){
+      if($(target).hasClass("moz")){
+        var addr = $(target).attr("data-value");
+        var num = $(target).attr("data-num");
+        var action = $(target).attr("data-action");
+        var playVal = $(target).parent().siblings("div.index_pad").find("h3 span").text();
+        var password = $(target).parent().siblings("div.index_pad").find("p input").val();
+        // console.log(playVal);
+        // console.log(password);
+        // console.log(addr);
+        // console.log(num);
+        // console.log(action);
+        $.ajax({
+          url:"/confirmPay",
+          type:"POST",
+          timeout:300000,
+          data:{
+            addr:addr,
+            playVal:playVal,
+            password:password,
+            num:num,
+            action:action
+          },
+          success:function(res){
+               console.log("/confirmPay："+res.data);
+            var time = changeByReg(res.data[2]),
+                action = res.data[3];
+            if(action == 'play'){
+							$("#buySure2").show();
+              setTimeout(function(){
+								window.open("broadcastPage.html?title="+res.data[0] +"&artist="+ res.data[1] +"&time="+ time +"&action="+ action +"&lis="+addr);
+              	//window.open("broadcastPage.html?title="+res.data[0] +"&artist="+ res.data[1] +"&time="+ time +"&action="+ action +"&lis="+ lis +"");
+              },1000);
+              //window.open("broadcastPage.html?title="+res.data[0] +"&artist="+ res.data[1] +"&time="+ time +"&action="+ action +"&lis="+addr);
+            }else{
+              $("#buySure2").show();
+							setTimeout(function(){
+								$('#pageCon').load("purchaseRecord.html");
+              },2000);
+            }
+          }
+        });
+
+      }else{
+        $(".fade").hide();
+        $(".modal-dialog").remove();
+      }
+    }
+  });
+	//购买歌曲支付完成，关闭按钮
+  $(".payableClose").click(function(){
+    $("#buySure2").hide();
+  })
+</script>

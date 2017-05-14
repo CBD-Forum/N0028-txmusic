@@ -1,0 +1,194 @@
+<div class="accountCenter">
+  <h3>账户基本信息</h3>
+  <div class="accountInformation">
+  	<div class="row">
+	    <div class=" col-md-3 col-sm-6 col-xs-6">
+	    	<div class="accInformation accInformation1">
+	    	<p class="fontStyle "><span class="Omoney"></span>ether</p>
+	    	<p class="fontColor">账户余额</p>
+	    	<p class="fontBlue"><a href="accountDetails.html" target="_blank">查看明细</a></p>
+	    	</div>
+	    </div>
+	    <div class=" col-md-3 col-sm-6 col-xs-6">
+	    	<div class="accInformation">
+	    	<p class="fontStyle"><span class="pTimes"></span>次</p>
+	    	<p class="fontColor">已购播放次数</p>
+	    	</div>
+	    </div>
+	    <div class=" col-md-3 col-sm-6 col-xs-6">
+	    	<div class="accInformation">
+	    	<p class="fontStyle"><span class="buySongs"></span>首</p>
+	    	<p class="fontColor">已购买版权歌曲</p>
+	    	</div>
+	    </div>
+	    <div class=" col-md-3 col-sm-6 col-xs-6">
+	    	<div class="accInformation">
+	    	<p class="fontStyle"><span class="Csongs"></span>首</p>
+	    	<p class="fontColor">已认证歌曲</p>
+	    	</div>
+	    </div>
+	</div>
+  </div>
+  <div class="row">
+  	<div class="col-md-6 col-sm-12">
+	    <h3>购买歌曲列表</h3>
+	    <div class="table_border">
+		<table class="table  table-condensed">
+		  <!--<caption>购买歌曲列表</caption>-->
+		  <thead>
+		    <tr>
+		      <th>歌曲名</th>
+		      <th>作者</th>
+		      <th>购买时间</th>
+		      <th>购买类型</th>
+		    </tr>
+		  </thead>
+		  <tbody class="buySonglist">
+
+		  </tbody>
+		</table>
+		<p class="fontBlue"><a href="javascript:;" id="buyRecord">更多</a></p>
+		</div>
+    </div>
+    <div class="col-md-6 col-sm-12">
+      	<h3>认证歌曲列表</h3>
+      	<div class="table_border">
+		<table class="table  table-condensed">
+		  <!--<caption>购买歌曲列表</caption>-->
+		  <thead>
+		    <tr>
+		      <th>歌曲名</th>
+		      <th>认证时间</th>
+		      <th>播放次数</th>
+		      <th>购买版权次数</th>
+		    </tr>
+		  </thead>
+		  <tbody class="cSnglist">
+
+		  </tbody>
+		</table>
+		<p class="fontBlue"><a href="javascript:;" id="ApproveMusic">更多>></a></p>
+		</div>
+  	</div>
+  </div>
+
+</div>
+<script>
+//账户基本信息前三项
+$.ajax({
+  url:"/accountDetailList",
+  type:"POST",
+  timeout : 300000,
+  data:{
+    a:1
+  },
+  success: function(res){
+    // console.log("111")
+    var Odata = res.data_1[0];
+    console.log(res.data_1)
+      Obalance = Odata.balance;
+     $('.Omoney').text(parseInt(Obalance).toFixed(2));
+     $('.pTimes').text(parseInt(Odata.ptimes));
+     $('.buySongs').text(parseInt(Odata.buySongs));
+  }
+});
+//已认证歌曲信息
+$.ajax({
+  url:"/accountCenter",
+  type:"POST",
+  timeout : 300000,
+  success: function(res){
+     var Odata = res.data[0];
+    //  console.log(Odata.Csongs)
+      $('.Csongs').text(parseInt(Odata.Csongs));
+  }
+});
+
+;!function(){
+  function changeByReg(num){
+   num = num || 1493103810;
+   var newDate = new Date();
+   newDate.setTime(num * 1000);
+   var str = newDate.toLocaleString()
+   var reg_a = /[\u4e00-\u9fa5]|[/]/g
+
+   var newstr = str.replace(reg_a,function(t){
+   if(t === '/'){
+   return '-';
+   }
+   if(/[\u4e00-\u9fa5]/.test(t)){
+   return '';
+   }
+   })
+   return newstr
+ }
+ //购买歌曲列表
+ var _arr = [];
+ var text;
+ $.ajax({
+   url:"/purchaseRecord",
+   type:"POST",
+   timeout : 300000,
+   success: function(res){
+      var Odata = res.data;
+      // console.log(Odata)
+      if(Odata.length>=4){
+        for(var i=0; i<4; i++){
+          if(Odata[i].purpose==1){
+            text='播放'
+          }if(Odata[i].purpose==2){
+            text='购买版权'
+          }
+         _arr.push("<tr><td>"+Odata[i].title+"</td><td>"+Odata[i].artist+"</td><td>"+changeByReg(Odata[i].itstime)+"</td><td>"+text+"</td></tr>")
+        }
+      }else{
+        for(var i=0; i<Odata.length; i++){
+          if(Odata[i].purpose==1){
+            text='播放'
+          }if(Odata[i].purpose==2){
+            text='购买版权'
+          }
+         _arr.push("<tr><td>"+Odata[i].title+"</td><td>"+Odata[i].artist+"</td><td>"+changeByReg(Odata[i].itstime)+"</td><td>"+text+"</td></tr>")
+        }
+      }
+
+       $('.buySonglist').append(_arr.join(''));
+   }
+ });
+ //认证歌曲列表
+ var Oarr = [];
+ $.ajax({
+   url:"/songsList",
+   type:"POST",
+   timeout : 300000,
+   data:{
+     authsong:1
+   },
+   success: function(res){
+      var Odata = res.data;
+      if(Odata.length>=4){
+        for(var i=0; i<4; i++){
+          Oarr.push("<tr><td>"+Odata[i].title+"</td><td>"+Odata[i].artist+"</td><td>"+Odata[i].playCount+"</td><td>"+Odata[i].buyCount+"</td></tr>")
+        }
+      }
+      if(Odata.length<4){
+        for(var i=0; i<Odata.length; i++){
+          Oarr.push("<tr><td>"+Odata[i].title+"</td><td>"+Odata[i].artist+"</td><td>"+Odata[i].playCount+"</td><td>"+Odata[i].buyCount+"</td></tr>")
+        }
+      }
+       $('.cSnglist').append(Oarr.join(''));
+   }
+ });
+ }()
+
+	/*账户中心的购买歌曲列表的更多点击*/
+	$("#buyRecord").click(function(){
+		$(".index_buy_record").addClass('active').siblings().removeClass('active');
+		$('#pageCon').load("purchaseRecord.html");
+	})
+	/*账户中心的认证歌曲列表的更多点击*/
+	$("#ApproveMusic").click(function(){
+		$(".index_approve_music").addClass('active').siblings().removeClass('active');
+		$('#pageCon').load("authSongs.html");
+	})
+</script>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>歌曲播放</title>
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    #pop_div{ position: absolute;padding: 10px; display: none;background-color: #fff; border:solid 1px #000;}
+    /*#bdcast_block span{ display: inline-block;}*/
+  </style>
+</head>
+<body class="bdcast_body">
+  <div class="container bdcast_box">
+    <div class="row bdcast_message">
+      <div class="col-md-6 col-sm-12">
+        <div class="row bdcast_mes_song">
+          <div class="col-lg-5 col-md-12 col-sm-12">
+            <img src="../images/congcong.jpg" alt="">
+          </div>
+          <div id="message" class="col-lg-7 col-md-12 col-sm-12">
+            <!-- <h4>%t</h4>
+            <h4>作者: <span>%a</span></h4>
+            <h4>认证时间： <span>2017-4-19 18:00</span></h4> -->
+          </div>
+        </div>
+        <div class="row bdcast_mes_word">
+          <div class="col-md-12">
+            <p>匆匆那年我们究竟说了几遍再见之后再拖延</p>
+            <p>可惜谁有没有爱过不是一场七情上面的雄辩</p>
+            <p>匆匆那年我们一时匆忙撂下难以承受的诺言</p>
+            <p>只有等别人兑现</p>
+            <p>不怪那吻痕还没积累成茧</p>
+            <p>拥抱着冬眠也没能羽化再成仙</p>
+            <p>不怪这一段情没空反复再排练</p>
+            <p>是岁月宽容恩赐反悔的时间</p>
+            <p>如果再见不能红着眼是否还能红着脸</p>
+            <p>就像那年匆促刻下永远一起那样美丽的谣言</p>
+            <p>如果过去还值得眷恋别太快冰释前嫌</p>
+            <p>谁甘心就这样彼此无挂也无牵</p>
+            <p>我们要互相亏欠要不然凭何怀缅</p>
+            <p>匆匆那年我们见过太少世面只爱看同一张脸</p>
+            <p>那么莫名其妙那么讨人欢喜闹起来又太讨厌</p>
+            <p>相爱那年活该匆匆因为我们不懂顽固的诺言</p>
+            <p>只是分手的前言</p>
+            <p>不怪那天太冷泪滴水成冰</p>
+            <p>春风也一样没吹进凝固的照片</p>
+            <p>不怪每一个人没能完整爱一遍</p>
+            <p>是岁月善意落下残缺的悬念</p>
+            <p>如果再见不能红着眼是否还能红着脸</p>
+            <p>就像那年匆促刻下永远一起那样美丽的谣言</p>
+            <p>如果过去还值得眷恋别太快冰释前嫌</p>
+            <p>谁甘心就这样彼此无挂也无牵</p>
+            <p>我们要互相亏欠 我们要藕断丝连</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <div class="row bdcast_mes_down">
+          <div class="col-lg-6 col-md-12 col-sm-6"><p>购买播放次数 <span>100</span></p></div>
+          <div class="col-lg-6 col-md-12 col-sm-6"><p>购买版权次数 <span>5</span></p></div>
+        </div>
+        <div class="row bdcast_mes_block">
+          <div class="col-md-12">
+            <div class="tab_box">
+              <ul class="tab">
+                  <li class="cur">区块链记录</li>
+                  <li>版权信息</li>
+              </ul>
+              <div class="tab_con on table-responsive">
+                <table id="bdcast_block" class="table bdcast_table">
+                  <tr>
+                    <th width="40%">操作人</th>
+                    <th width="30%">操作时间</th>
+                    <th width="30%">操作事项</th>
+                  </tr>
+                </table>
+              </div>
+              <div class="tab_con table-responsive">
+                <table id="bdcast_copr" class="table bdcast_table">
+                  <tr>
+                    <th>版权所有者</th>
+                    <th>版权权益</th>
+                    <th>版权类型</th>
+                  </tr>
+                  <tr class="bacast_table_tr">
+                    <td>播放：5元</td>
+                    <td>版权：100元</td>
+                    <td></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row bdcast_control_bar">
+        <div class="col-md-3 col-sm-3 text-center bdcast_stop">
+            <span id="playpause" class="glyphicon glyphicon-play" data-val="play" aria-hidden="true" ></span>
+            <span id="download" class="glyphicon glyphicon-download " aria-hidden="true" ></span>
+        </div>
+        <div class="col-md-5 col-sm-5 bdcast_bar">
+            <div class="progressi" id="progress">
+	            <div class="ibar" id="progressBar"></div>
+	          </div>
+        </div>
+        <div class="col-md-2 col-sm-2 text-center">
+            <h3 class="bdcast_time" id="time">00:00/00:00</h3>
+        </div>
+        <div class="col-md-2 col-sm-2 text-center bdcast_volume">
+          <span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span>
+          <span></span>
+        </div>
+    </div>
+    <audio id="audio" controls>
+        <source src="../styles/musics/congcong.mp3"/>
+    </audio>
+  </div>
+  <div id="pop_div" class="__pop">my world!</div>
+  <script type="text/template" id="block_record">
+    <tr>
+      <td width="40%"> <span value="%h">%h</span> </td>
+      <td width="30%">%t</td>
+      <td width="30%">%a</td>
+    </tr>
+  </script>
+  <script type="text/template" id="copr_mess">
+    <tr>
+      <td>%o</td>
+      <td>%r</td>
+      <td>%y</td>
+    </tr>
+  </script>
+  <script type="text/template" id="message_tem">
+    <h4 data-val=%l>%t</h4>
+    <h4>作者: <span>%a</span></h4>
+    <h4>认证时间： <span>%s</span></h4>
+  </script>
+  <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+  <script type="text/javascript" src="../js/libs/jquery-3.2.0.min.js"></script>
+  <script type="text/javascript" src="../js/controller/song.js"></script>
+  <script type="text/javascript" src="../js/controller/generateStringByTemplate.js"></script>
+  <script type="text/javascript" src='../js/bundle.js?t=33367768554448'></script>
+
+  <script>
+  ;!function(){
+    
+  }();
+  </script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+    	<!--<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+	<title>个人主页</title>
+
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+</head>
+<body for_script="index" id="accountCenter">
+  <div class="header">
+    <h3 class="left">音乐版权管理</h3>
+    <p class="right"><span>张三&nbsp;</span><span id="accountCenter_a">账户中心&nbsp;</span><span>退出&nbsp;</span></p>
+  </div>
+	<div class="container">
+	  <div class="row">
+	    <div class="aside  col-md-2 col-sm-4 col-xs-4">
+	      <ul id="loadPage">
+          <li class="index_find_music"><a href="../index.html">发现歌曲</a></li>
+	        <li class="bor_li index_buy_record"><a href="../views/purchaseRecord.html">购买记录</a></li>
+	        <li class="index_approve_music"><a href="../views/authSongs.html">认证歌曲</a></li>
+	      </ul>
+	    </div>
+	    <div class="content  col-md-10 col-sm-8 col-xs-8"  id="pageCon">
+        <div class="accountCenter">
+  <h3>账户基本信息</h3>
+  <div class="accountInformation">
+  	<div class="row">
+	    <div class=" col-md-3 col-sm-6 col-xs-6">
+	    	<div class="accInformation accInformation1">
+	    	<p class="fontStyle "><span class="Omoney"></span>元</p>
+	    	<p class="fontColor">账户余额</p>
+	    	<p class="fontBlue"><a href="accountDetails.html" target="_blank">查看明细</a></p>
+	    	</div>
+	    </div>
+	    <div class=" col-md-3 col-sm-6 col-xs-6">
+	    	<div class="accInformation">
+	    	<p class="fontStyle"><span class="pTimes"></span>次</p>
+	    	<p class="fontColor">已购播放次数</p>
+	    	</div>
+	    </div>
+	    <div class=" col-md-3 col-sm-6 col-xs-6">
+	    	<div class="accInformation">
+	    	<p class="fontStyle"><span class="buySongs"></span>首</p>
+	    	<p class="fontColor">已购买版权歌曲</p>
+	    	</div>
+	    </div>
+	    <div class=" col-md-3 col-sm-6 col-xs-6">
+	    	<div class="accInformation">
+	    	<p class="fontStyle"><span class="Csongs"></span>首</p>
+	    	<p class="fontColor">已认证歌曲</p>
+	    	</div>
+	    </div>
+	</div>
+  </div>
+  <div class="row">
+  	<div class="col-md-6 col-sm-12">
+	    <h3>购买歌曲列表</h3>
+	    <div class="table_border">
+		<table class="table  table-condensed">
+		  <!--<caption>购买歌曲列表</caption>-->
+		  <thead>
+		    <tr>
+		      <th>歌曲名</th>
+		      <th>作者</th>
+		      <th>购买时间</th>
+		      <th>购买类型</th>
+		    </tr>
+		  </thead>
+		  <tbody class="buySonglist">
+
+		  </tbody>
+		</table>
+		<p class="fontBlue"><a href="purchaseRecord.html" id="buyRecord">更多</a></p>
+		</div>
+    </div>
+    <div class="col-md-6 col-sm-12">
+      	<h3>认证歌曲列表</h3>
+      	<div class="table_border">
+		<table class="table  table-condensed">
+		  <!--<caption>购买歌曲列表</caption>-->
+		  <thead>
+		    <tr>
+		      <th>歌曲名</th>
+		      <th>认证时间</th>
+		      <th>播放次数</th>
+		      <th>购买版权次数</th>
+		    </tr>
+		  </thead>
+		  <tbody class="cSnglist">
+
+		  </tbody>
+		</table>
+		<p class="fontBlue"><a href="authSongs.html" id="ApproveMusic">更多>></a></p>
+		</div>
+  	</div>
+  </div>
+
+</div>
+
+
+	    </div>
+	  </div>
+	</div>
+<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+  <script type="text/javascript" src="../js/libs/jquery-1.10.2.js"></script>
+  <script type="text/javascript" src="../js/libs/bootstrap.js"></script>
+  <!-- <script type="text/javascript" src="js/controller/load.js"></script> -->
+  <script type="text/javascript" src="../js/controller/generateStringByTemplate.js"></script>
+  <script type="text/javascript" src='../js/bundle.js?t=33367768554448'></script>
+   <!-- <script>
+
+    /*账户中心的购买歌曲列表的更多点击*/
+    $("#buyRecord").click(function(){
+      $(".index_buy_record").addClass('active').siblings().removeClass('active');
+      $('#pageCon').load("purchaseRecord.html");
+    })
+    /*账户中心的认证歌曲列表的更多点击*/
+    $("#ApproveMusic").click(function(){
+      $(".index_approve_music").addClass('active').siblings().removeClass('active');
+      $('#pageCon').load("authSongs.html");
+    })
+  </script>-->
+</body>
+</html>

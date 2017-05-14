@@ -1,0 +1,232 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+    	<!--<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+	<title>个人主页</title>
+
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+</head>
+<body for_script="index" id="authSongs">
+  <div class="header">
+    <h3 class="left">音乐版权管理</h3>
+    <p class="right"><span>张三&nbsp;</span><span id="accountCenter">账户中心&nbsp;</span><span>退出&nbsp;</span></p>
+  </div>
+	<div class="container">
+	  <div class="row">
+	    <div class="aside  col-md-2 col-sm-4 col-xs-4">
+	      <ul id="loadPage">
+					<li class="index_find_music"><a href="/index.html">发现歌曲</a></li>
+	        <li class="bor_li index_buy_record"><a href="../views/purchaseRecord.html">购买记录</a></li>
+	        <li class="active index_approve_music"><a href="../views/authSongs.html">认证歌曲</a></li>
+	      </ul>
+	    </div>
+	    <div class="content  col-md-10 col-sm-8 col-xs-8"  id="pageCon">
+
+						<div>
+							<h4 class="navtitle">
+								<span class="navtop1">认证歌曲数量：<span>10</span>首</span>
+								<!--<button class="btn btn-default btnWider" type="button">认证</button>-->
+								<button type="button" id="identify" class="btn btn-primary btnWider" data-toggle="modal" data-target='#myModal1'>认证</button>
+							</h4>
+							<div class="row marginv0"><!--col-lg-3 col-xs-3 col-md-3-->
+								<div class="pull-right">
+									<button class="btn btn-default btnWider" id="authSongSearch" type="button">搜索</button>
+								</div>
+								<div class=" col-xs-4 pull-right">
+									<input type="text" class="form-control" id="authSongInput" placeholder="歌曲名">
+								</div>
+							</div>
+							<div class="tablewrap">
+								<table id="authSongsList" class="table" border="0" cellspacing="0" cellpadding="0">
+									<thead>
+										<tr>
+											<th>歌曲名</th>
+											<th>歌曲作者</th>
+											<th>认证时间</th>
+											<th>播放次数</th>
+											<th>购买版权次数</th>
+											<th>操作</th>
+										</tr>
+									</thead>
+									<tbody></tbody>
+								</table>
+							</div>
+						</div>
+						<!--认证点击弹窗部分-->
+						<div class="modal fade htapWin" id="myModal1" role="dialog">
+				        <div class="modal-dialog" role="document">
+				          <div class="modal-content">
+				            <div class="modal-header">
+				              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				              <h3 class="modal-title">认证歌曲</h3>
+				            </div>
+				            <div class="progressInfo">
+				            	<img src="../images/baseInfo.png" alt="" />
+				            </div>
+				            <div class="modal-body">
+				              <div class="modal-box">
+				                 <div class="row">
+				                   <div class="col-md-6">
+				                     <p>歌曲名称 <input id="sname" type="text" placeholder="请输入歌曲名" /></p>
+				                     <p>歌曲文件 <input type="text" placeholder="请输入歌曲文件" /></p>
+				                     <p>图片文件 <input type="text" placeholder="请输入图片文件" /></p>
+				                     <p>播放费用 <input id="splayPay" type="text" placeholder="请输入购买播放所需费用" /> 元</p>
+				                     <p>版权费用 <input id="sbuyPay" type="text" placeholder="请输入歌曲名" /> 元</p>
+				                   </div>
+				                   <div class="col-md-6">
+				                     <p>歌曲作者 <input id="sauthor" type="text" placeholder="请输入歌曲作者" /></p>
+				                     <p>歌曲地址 <input id="saddress" type="text" placeholder="请输入歌曲地址" /></p>
+				                     <p>图片地址 <input id="spicaddr" type="text" placeholder="请输入图片地址" /></p>
+				                   </div>
+				                 </div>
+				              </div>
+				            </div>
+				            <div class="modal-footer">
+				              <button type="button" class="btn btn-danger"  data-toggle="modal" data-target='#myModal2' data-dismiss="modal" id="jingSubmitBtn">下一步</button>
+				              <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+				            </div>
+				          </div>
+				        </div>
+				      </div>
+				      <!-- next -->
+				      <div class="modal fade htapWin" id="myModal2" role="dialog">
+				        <div class="modal-dialog" role="document">
+				          <div class="modal-content">
+				            <div class="modal-header">
+				              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				              <h3 class="modal-title">认证歌曲</h3>
+				            </div>
+				            <div class="progressInfo">
+				            	<img src="../images/copyInfo.png" alt="" />
+				            </div>
+				            <div class="modal-body">
+				              <div class="modal-box">
+												<table  id="table_view" width="100%">
+				              		<tr>
+				              			<td width="23%">版权类型</td>
+				              			<td width="23%">版权所有者</td>
+				              			<td width="23%">版权权益（%）</td>
+				              			<td width="31%"></td>
+				              		</tr>
+				              		<tr data-val=0 data-parent="true" data-hasP="false">
+							  						<td width="23%"><input type="text" placeholder="输入版权类型"/></td>
+							  						<td width="23%"><input type="text" class="scontributors" placeholder="输入版权所有者账号"/></td>
+							  						<td width="23%"><input type="text" class="sshares" placeholder="输入权益比例"/></td>
+							  						<td width="31%">
+															<a class="aBtn mingxi">+版权明细</a>
+															<a class="aBtn banquan">+版权</a>
+														</td>
+				  								</tr>
+				              	</table>
+				              </div>
+				            </div>
+				            <div class="modal-footer">
+				              <button type="button" class="btn btn-default" data-toggle="modal" data-target='#myModal1' data-dismiss="modal" >上一步</button>
+				              <button type="button" class="btn btn-danger" id="modalSubmit">提交</button>
+				              <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+				            </div>
+				          </div>
+				        </div>
+				      </div>
+				      <!--支付提示-->
+
+							<div class="tapWin">
+				      	<div class="dialog">
+				      		<div class="dialog-header">提示</div>
+				      		<div class="dialog-body">
+				      			<h3 style="margin:30px 0 40px">请输入您的支付密码进行作品认证！</h3>
+				            <p>支付密码：<input type="password" placeholder="输入支付密码" id="payPwd" /></p>
+				      		</div>
+				      		<div class="dialog-footer">
+				      			<a href="#" id="passwordCheckBtn" class="checkBtn">确定</a>
+				      			<a href="#" id="passwordCancle" class="cancle">取消</a>
+				      		</div>
+				      	</div>
+				      </div>
+<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+				<script type="text/template" id="temp_mingxi">
+					<tr data-val=1 data-parent=false data-hasP=true>
+						<td colspan='4'>
+							<dl class="bqmx clearfix" style="margin-left:50px">
+								<dd class="left line"> &nbsp;  </dd>
+								<dd class="left ddStyle"><input type="text" placeholder="输入版权类型"/></dd>
+								<dd class="left ddStyle"><input type="text" class="scontributors" placeholder="输入版权所有者账号"/></dd>
+								<dd class="left ddStyle"><input type="text" class="sshares" placeholder="输入权益比例"/></dd>
+								<dd class="left ddStyle sub">-</dd>
+							</dl>
+						</td>
+					</tr>
+				</script>
+				<script type="text/template" id="temp_view">
+					<tr data-val=0 data-parent=true data-hasP=false>
+						<td width="20%"><input type="text" placeholder="输入版权类型"/></td>
+						<td width="20%"><input type="text" class="scontributors" placeholder="输入版权所有者账号"/></td>
+						<td width="20%"><input type="text" class="sshares" placeholder="输入权益比例"/></td>
+						<td width="40%" class="subTd"><span class="sub">-</span></td>
+					</tr>
+				</script>
+				<!-- <script type="text/template" id="temp_views">
+					<tr data-parent="true" data-hasP="false">
+						<td width="20%"><input type="text" placeholder="输入版权类型"/></td>
+						<td width="20%"><input type="text" class="scontributors" placeholder="输入版权所有者账号"/></td>
+						<td width="20%"><input type="text" class="sshares" placeholder="输入权益比例"/></td>
+						<td width="40%">
+							<a class="aBtn mingxi">+版权明细</a>
+							<a class="aBtn banquan">+版权</a>
+						</td>
+					</tr>
+				</script> -->
+
+				<script type="text/template" id="auth_songs_list">
+					<tr>
+						<td>%s</td>
+						<td>%n</td>
+						<td>%t</td>
+						<td>%p</td>
+						<td>%b</td>
+						<td><a data-action="selfAuth" class="pr_color authsongCheck" data-val=%l target="_blank">查看</a></td>
+					</tr>
+				</script>
+				<script type="text/javascript" src="../js/libs/jquery-3.2.0.min.js"></script>
+				<script type="text/javascript" src="../js/libs/bootstrap.min.js"></script>
+				<!-- <script type="text/javascript" src="js/controller/load.js"></script> -->
+				<script type="text/javascript" src="../js/controller/generateStringByTemplate.js"></script>
+				<script type="text/javascript" src="../js/bundle.js?t=33367768554448"></script>
+				<script>
+					;!function(){
+						$("#authSongSearch").click(function(){
+							var txt = $("#authSongInput").val();
+							// console.log(txt);
+							$("#authSongsList").find("tbody tr").hide().filter(":contains('"+ txt +"')").show();
+						});
+
+						$("#identify").click(function(){
+							$("#myModal1").find("input").val("");
+							$("#myModal2").find("input").val("");
+						});
+						$('#modalSubmit').click(function(){
+							$('.tapWin').show();
+						})
+						/**
+							作品认证支付密码提示框：取消按钮，显示前一个弹框内容
+						**/
+						$("#passwordCancle").click(function(){
+							$('.tapWin').find("input").val("");
+							$('.tapWin').hide();
+							$("#myModal2").show();
+						});
+					}();
+				</script>
+
+	    </div>
+	  </div>
+	</div>
+
+</body>
+</html>
